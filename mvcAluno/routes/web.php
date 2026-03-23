@@ -16,3 +16,9 @@ Route::get('/aluno/cadastrar', function(){
 
 //POST - enviar os dados para cadastrar usuarios
 Route::post('/aluno/salvar',[AlunoController::class, 'add'])->name('aluno.salvar');
+
+
+//TELA de atualizar
+Route::get('aluno/{id}/atualizar', [AlunoController::class, 'atualizar'])->name('aluno.atualizar');
+
+Route::put('/aluno/{id}/update', [AlunoController::class, 'update'])->name('aluno.update');

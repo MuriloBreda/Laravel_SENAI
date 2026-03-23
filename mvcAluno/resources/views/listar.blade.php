@@ -3,7 +3,7 @@
 <head>
     <meta charset="pt-BR">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Relatório de Alunos</title>
 </head>
 <body>
     <h1>Relatório de Alunos</h1>
@@ -23,7 +23,9 @@
                     <td>{{ $aluno->id }}</td>
                     <td>{{ $aluno->nome }}</td>
                     <td>{{ $aluno->email }}</td>
-                    <td>Faremos na proxima aula</td>
+                    <td>
+                        <a href="{{route('aluno.atualizar', $aluno->id)}}">Atualizar</a>
+                    </td>
                     <td>Faremos na proxima aula</td>
                 </tr>
             @empty
