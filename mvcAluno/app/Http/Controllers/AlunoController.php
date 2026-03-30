@@ -48,6 +48,15 @@ class AlunoController extends Controller{
         $aluno->save(); //salvando no banco de dados
         return redirect()->back()->with('seccess','Aluno atualizado com sucesos');
     }
+
+    public function deletar($id){
+        $aluno = Aluno::findOrFail($id); // buscar o aluno para depois deletar
+        $aluno->delete();
+
+        return redirect()->route('aluno.listar')->with('seccess','Aluno excluido com secesso!');
+
+    }
+    
 }
 
 ?>
