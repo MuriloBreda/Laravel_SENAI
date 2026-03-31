@@ -16,12 +16,14 @@ class AlunoController extends Controller{
 
     $request->validate([
         'nome' => 'required|string|max:255',
-        'email' => 'required|string|max:255|unique:alunos,email'
+        'email' => 'required|string|max:255|unique:alunos,email',
+        'turma_id' => 'nullable|exists:turmas,id' //para poder ser nulo ou existir na tableas turmas
     ]);
 
     Aluno::create([
         'nome' => $request->nome,
-        'email' => $request->email
+        'email' => $request->email,
+        'turma_id' => $request->turma_id
     ]);
 
     return redirect()->back()->with('sucess','Aluno Cadastrado com sucesso!');
