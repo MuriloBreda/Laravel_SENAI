@@ -7,8 +7,10 @@ use Illuminate\Http\Request;
 
 class AlunoController extends Controller{
     public function listar(){
-        $query = Aluno::query();
-        $alunos = $query->get();
+        // $query = Aluno::query();
+        // $alunos = $query->get();
+
+        $alunos = Aluno::with('turma')->get();
         return view('listar', compact('alunos'));
     }
 

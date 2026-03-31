@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Relatório de Alunos</title>
 </head>
+<style>
+    table{
+        text-align: center
+    }
+</style>
 <body>
     <h1>Relatório de Alunos</h1>
     <table border="1">
@@ -13,8 +18,11 @@
                 <th>ID</th>
                 <th>NOME</th>
                 <th>EMAIL</th>
-                <th>Atualizar</th>
-                <th>Deletar</th>
+                <th>ID TURMA</th>
+                <th>SERIE</th>
+                <th>NUM SALA</th>
+                <th>ATUALIZAR</th>
+                <th>DELETAR</th>
             </tr>
         </thead>
         <tbody>
@@ -23,6 +31,9 @@
                     <td>{{ $aluno->id }}</td>
                     <td>{{ $aluno->nome }}</td>
                     <td>{{ $aluno->email }}</td>
+                    <td>{{ $aluno->turma?->id }}</td>
+                    <td>{{ $aluno->turma?->serie }}</td>
+                    <td>{{ $aluno->turma?->numSala }}</td>
                     <td>
                         <a href="{{route('aluno.atualizar', $aluno->id)}}">Atualizar</a>
                     </td>
