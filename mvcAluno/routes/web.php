@@ -8,24 +8,22 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Alunos
 Route::get('/aluno/listar',[AlunoController::class, 'listar'])->name('aluno.listar');
 
-Route::get('/aluno/cadastrar', function(){
-    return view('cadastro');
-})->name('aluno.cadastro');
+// 🔥 CORREÇÃO AQUI (usar controller e não view direta)
+Route::get('/aluno/cadastrar',[AlunoController::class, 'create'])->name('aluno.cadastro');
 
-//POST - enviar os dados para cadastrar usuarios
 Route::post('/aluno/salvar',[AlunoController::class, 'add'])->name('aluno.salvar');
 
-
-//TELA de atualizar
-Route::get('aluno/{id}/atualizar', [AlunoController::class, 'atualizar'])->name('aluno.atualizar');
+Route::get('/aluno/{id}/atualizar', [AlunoController::class, 'atualizar'])->name('aluno.atualizar');
 
 Route::put('/aluno/{id}/update', [AlunoController::class, 'update'])->name('aluno.update');
 
 Route::delete('/aluno/{id}', [AlunoController::class, 'deletar'])->name('aluno.deletar');
 
-// Rotas da turma
+
+// Turmas
 Route::get('/turma/cadastrar', function(){
     return view('cadastroTurma');
 })->name('turma.cadastro');

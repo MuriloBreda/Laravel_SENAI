@@ -8,23 +8,33 @@
 <body>
     <h1>Cadastro Usuários</h1>
 
-    @if(session('sucess'))
-        <p style="color:green">{{ session('sucess')}}</p>
+    @if(session('success'))
+        <p style="color:green">{{ session('success') }}</p>
     @endif
 
     <form action="{{ route('aluno.salvar') }}" method="POST">
         @csrf
+
         <label for="nome">Nome:</label>
-        <input type="text" name="nome" id="nome" placeholder="Nome..." require value="{{old('nome')}}">
+        <input type="text" name="nome" id="nome" placeholder="Nome..." required value="{{ old('nome') }}">
         <br><br>
 
         <label for="email">Email:</label>
-        <input type="email" name="email" id="email" placeholder="Email..." require value="{{old('email')}}">
+        <input type="email" name="email" id="email" placeholder="Email..." required value="{{ old('email') }}">
         <br><br>
 
-        <label for="turma_id">ID da Turma:</label>
-        <input type="number" name="turma_id" id="turma_id" placeholder="ID da Turma..." require value="{{old('email')}}">
-        
+        <label for="turma_id">Turma:</label>
+        <select name="turma_id" id="turma_id" required>
+            <option value="" disabled selected>Selecione uma turma</option>
+
+            @foreach ($turmas as $turma)
+                <option value="{{ $turma->id }}">
+                    Sala {{ $turma->numSala }} - {{ $turma->serie }}
+                </option>
+            @endforeach
+        </select>
+
+        <br><br>
         <input type="submit" value="Cadastrar">
     </form>
 
@@ -35,7 +45,6 @@
                     <li>{{ $erro }}</li>
                 @endforeach
             </ul>
-
         </div>
     @endif
 </body>

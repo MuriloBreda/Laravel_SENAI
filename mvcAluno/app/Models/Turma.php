@@ -3,16 +3,16 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+
 class Turma extends Model{
+
     protected $fillable = [
         'numSala',
         'serie'
     ];
 
-    public function aluno(){
+    // 🔥 plural (padrão Laravel)
+    public function alunos(){
         return $this->hasMany(Aluno::class);
     }
-
 }
-
-?>
