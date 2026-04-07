@@ -8,7 +8,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Alunos
+// produtos
 Route::get('/produto/listar',[ProdutoController::class, 'listar'])->name('produto.listar');
 
 Route::get('/produto/cadastrar',[ProdutoController::class, 'create'])->name('produto.cadastro');
@@ -22,9 +22,11 @@ Route::put('/produto/{id}/update', [ProdutoController::class, 'update'])->name('
 Route::delete('/produto/{id}', [ProdutoController::class, 'deletar'])->name('produto.deletar');
 
 
-// Turmas
+// setores
 Route::get('/setor/cadastrar', function(){
     return view('cadastroSetor');
 })->name('setor.cadastro');
 
 Route::post('/setor/salvar',[SetorController::class, 'add'])->name('setor.salvar');
+
+Route::get('/setor/listar',[SetorController::class, 'listarSetor'])->name('setor.listar');

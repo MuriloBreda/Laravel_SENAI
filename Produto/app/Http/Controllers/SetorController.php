@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class SetorController extends Controller{
 
+    public function listarSetor(){
+        $setores = Setor::all(); // usando o all() pq quero apenas listar
+        return view('listarSetor', compact('setores'));
+    }
+
     public function add(Request $request){
 
         $request->validate([

@@ -26,6 +26,18 @@
         <input type="text" name="preco" id="preco" placeholder="Preço..." require value="{{old('preco')}}">
         <br><br>
 
+        <label for="descricao">Descrição do Produto:</label>
+        <input type="textarea" name="descricao" id="descricao" placeholder="Descrição do Produto..." require value="{{old('descricao')}}">
+        <br><br>
+
+        <label for="tamanho">Tamanho do Produto:</label>
+        <input type="text" name="tamanho" id="tamanho" placeholder="Tamanho do Produto..." require value="{{old('tamanho')}}">
+        <br><br>
+
+        <label for="tamanho">Peso do Produto:</label>
+        <input type="text" name="peso" id="peso" placeholder="Peso do Produto..." require value="{{old('peso')}}">
+        <br><br>
+
         <label for="setor_id">Setor:</label>
         <select name="setor_id" id="setor_id" required>
             <option value="" disabled selected>Selecione um Setor</option>

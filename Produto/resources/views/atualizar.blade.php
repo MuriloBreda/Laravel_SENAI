@@ -23,6 +23,12 @@
 
         <input type="text" name="preco" value="{{ old('preco', $produto->preco) }}" required>
 
+        <input type="text" name="descricao" value="{{ old('descricao', $produto->detalhe?->descricao) }}" required>
+
+        <input type="text" name="tamanho" value="{{ old('tamanho', $produto->detalhe?->tamamho) }}" required>
+
+        <input type="number" name="peso" value="{{ old('peso', $produto->detalhe?->peso) }}" required>
+
         <button type="submit">Atualizar</button>
     </form>
 

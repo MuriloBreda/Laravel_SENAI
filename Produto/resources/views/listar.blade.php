@@ -19,6 +19,9 @@
                 <th>NOME</th>
                 <th>QUANTIDADE</th>
                 <th>PREÇO</th>
+                <th>DESCRIÇÃO</th>
+                <th>TAMANHO</th>
+                <th>PESO</th>
                 <th>ID SETOR</th>
                 <th>SETOR</th>
                 <th>N° CORREDOR</th>
@@ -33,6 +36,9 @@
                     <td>{{ $produto->nome }}</td>
                     <td>{{ $produto->quantidade }}</td>
                     <td>{{ $produto->preco }}</td>
+                    <td>{{ $produto->detalhe->descricao ?? '' }}</td>
+                    <td>{{ $produto->detalhe->tamanho ?? '' }}</td>
+                    <td>{{ $produto->detalhe->peso ?? '' }}</td>
                     <td>{{ $produto->setor?->id }}</td>
                     <td>{{ $produto->setor?->nome }}</td>
                     <td>{{ $produto->setor?->nCorredor }}</td>
@@ -50,7 +56,7 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="9">Nenhum PRODUTO encontrado</td> 
+                    <td colspan="12">Nenhum PRODUTO encontrado</td> 
                 </tr>
             @endforelse
         </tbody>

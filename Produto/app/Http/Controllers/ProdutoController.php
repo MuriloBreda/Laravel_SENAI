@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Produto;
 use App\Models\Setor;
+use App\Models\DetalheProduto;
 use Illuminate\Http\Request;
 
 class ProdutoController extends Controller{
 
     public function listar(){
-        $produtos = Produto::with('setor')->get();
+        $produtos = Produto::with(['setor','detalhe'])->get();
         return view('listar', compact('produtos'));
     }
 
@@ -24,39 +25,61 @@ class ProdutoController extends Controller{
             'nome' => 'required|string|max:255',
             'quantidade' => 'required|string|max:255',
             'preco' => 'required|string|max:255',
-            'setor_id' => 'required|exists:setores,id' // ✅ corrigido
+            'descricao' => 'required|string|max:255',
+            'tamanho' => 'required|string|max:255',
+            'peso' => 'required|numeric|max:255',
+            'setor_id' => 'required|exists:setores,id'
+        ]);
+
+        $detalhe = DetalheProduto::create([
+            'descricao' => $request->descricao,
+            'tamanho' => $request->tamanho,
+            'peso' => $request->peso,
         ]);
 
         Produto::create([
             'nome' => $request->nome,
             'quantidade' => $request->quantidade,
             'preco' => $request->preco,
-            'setor_id' => $request->setor_id // ✅ corrigido
+            'setor_id' => $request->setor_id,
+            'detalhes_id' => $detalhe->id
         ]);
 
         return redirect()->back()->with('success','Produto cadastrado com sucesso!');
     }
 
     public function atualizar($id){
-        $produto = Produto::findOrFail($id);
-        $setores = Setor::all(); // opcional (pra select)
+        $produto = Produto::with('detalhe')->findOrFail($id);
+        $setores = Setor::all();
         return view('atualizar', compact('produto','setores'));
     }
 
     public function update(Request $request, $id){
+
         $request->validate([
             'nome' => 'required|string|max:255',
             'quantidade' => 'required|string|max:255',
-            'preco' => 'required|string|max:255'
+            'preco' => 'required|string|max:255',
+            'descricao' => 'required|string|max:255',
+            'tamanho' => 'required|string|max:255',
+            'peso' => 'required|numeric|max:255'
         ]);
 
         $produto = Produto::findOrFail($id);
 
-        $produto->nome = $request->nome;
-        $produto->quantidade = $request->quantidade;
-        $produto->preco = $request->preco; // ✅ faltava isso
+        // atualiza produto
+        $produto->update([
+            'nome' => $request->nome,
+            'quantidade' => $request->quantidade,
+            'preco' => $request->preco,
+        ]);
 
-        $produto->save();
+        // atualiza detalhe
+        $produto->detalhe->update([
+            'descricao' => $request->descricao,
+            'tamanho' => $request->tamanho,
+            'peso' => $request->peso,
+        ]);
 
         return redirect()->back()->with('success','Produto atualizado com sucesso!');
     }
