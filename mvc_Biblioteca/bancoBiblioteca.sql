@@ -3,7 +3,7 @@ use bibliotecaLaravel;
 
 create table Livros(
 	id int auto_increment primary key,
-    nome varchar(100),
+    nomeLivro varchar(100),
     autor varchar(100),
     descricao varchar(255),
     created_at timestamp null,
@@ -22,7 +22,7 @@ FOREIGN KEY (detalhe_id) REFERENCES Detalhe(id);
 
 create table Editora(
 	id int auto_increment primary key,
-    nome varchar(100),
+    nomeEditora varchar(100),
     cnpj int,
     pais varchar(255),
     cidade varchar(255),
