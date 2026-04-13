@@ -9,6 +9,10 @@
 <body>
     <header>
         <h1>Atualizar Livro</h1>
+
+        <nav>
+            <a href="/livro/listar">Voltar a tela de Listar Livros</a>
+        </nav>
     </header>
 
     @if(session('success'))
