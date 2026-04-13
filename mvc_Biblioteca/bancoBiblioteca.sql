@@ -10,6 +10,16 @@ create table Livros(
     updated_at timestamp null
 );
 
+ALTER TABLE Livros 
+ADD COLUMN editora_id INT,
+ADD CONSTRAINT fk_Livros_Editora
+FOREIGN KEY (editora_id) REFERENCES Editora(id);
+
+ALTER TABLE Livros
+ADD COLUMN detalhe_id INT,
+ADD CONSTRAINT fk_Livros_Detalhe
+FOREIGN KEY (detalhe_id) REFERENCES Detalhe(id);
+
 create table Editora(
 	id int auto_increment primary key,
     nome varchar(100),
