@@ -11,12 +11,12 @@
         <h1>Cadastro Livro</h1>
 
         <nav>
-            <a href="#">Listar Livros</a>
+            <a href="/livro/listar">Listar Livros</a>
         </nav>
     </header>
 
     <main>
-        <form action="#" method="POST">
+        <form action="{{ route('livro.salvar') }}" method="POST">
             @csrf
 
             <label for="nomeLivro">Nome:</label>
@@ -48,7 +48,7 @@
             <br><br>
 
             <label for="preco">Preço:</label>
-            <input type="text" name="preco" id="preco" placeholder="Preço..." require value="{{old('preco')}}">
+            <input type="text" name="preco_venda" id="preco_venda" placeholder="Preço..." require value="{{old('preco_venda')}}">
             <br><br>
 
             <label for="imposto">Imposto:</label><input type="text" name="imposto" id="imposto" placeholder="Imposto..." require value="{{old('imposto')}}">

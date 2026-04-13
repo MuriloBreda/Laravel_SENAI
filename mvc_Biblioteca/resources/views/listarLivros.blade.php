@@ -11,8 +11,9 @@
         <h1>Relatório dos Livros</h1>
 
         <nav>
-            <a href="#">Cadastrar Editora</a>
-            <a href="#">Cadastrar Livro</a>
+            <a href="/editora/cadastrar">Cadastrar Editora</a>
+            <br>
+            <a href="/livro/cadastrar">Cadastrar Livro</a>
         </nav>
     </header>
 
@@ -22,6 +23,7 @@
                 <tr>
                     <th>ID</th>
                     <th>NOME</th>
+                    <th>AUTOR</th>
                     <th>DESCRIÇÃO</th>
                     <th>NOME EDITORA</th>
                     <th>CUSTO</th>
@@ -31,7 +33,7 @@
                 </tr>
             </thead>
             <tbody>
-                @forelse($produtos as $produto);
+                @forelse($livros as $livro)
                     <tr>
                         <td>{{ $livro->id }}</td>
                         <td>{{ $livro->nomeLivro }}</td>
@@ -39,7 +41,7 @@
                         <td>{{ $livro->descricao }}</td>
                         <td>{{ $livro->editora?->nomeEditora }}</td>
                         <td>{{ $livro->detalhe->custo ?? '' }}</td>
-                        <td>{{ $livro->detalhe->preco ?? '' }}</td>
+                        <td>{{ $livro->detalhe->preco_venda ?? '' }}</td>
                         <td>{{ $livro->detalhe->imposto ?? '' }}</td>
                         
                         <td>

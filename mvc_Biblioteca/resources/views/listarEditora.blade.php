@@ -11,8 +11,9 @@
         <h1>Relatório da Editora</h1>
 
         <nav>
-            <a href="#">Cadastrar Editora</a>
-            <a href="#">Cadastrar Livro</a>
+            <a href="/editora/cadastrar">Cadastrar Editora</a>
+            <br>
+            <a href="/livro/cadastrar">Cadastrar Livro</a>
         </nav>
     </header>
 

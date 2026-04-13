@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Detalhe extends Model{
 
-    protected $table = 'detalhes';
+    protected $table = 'detalhe';
 
     protected $fillable = [
         'custo',
-        'preco',
+        'preco_venda',
         'imposto'
     ];
 

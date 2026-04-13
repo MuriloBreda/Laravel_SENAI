@@ -15,7 +15,7 @@ class LivroController extends Controller{
     }
 
     public function create(){
-        $livros = Editora::all();
+        $editoras = Editora::all();
         return view('cadastrarLivros', compact('editoras'));
     }
 
@@ -26,14 +26,14 @@ class LivroController extends Controller{
             'autor' => 'required|string|max:255',
             'descricao' => 'required|string|max:255',
             'custo' => 'required|string|max:255',
-            'preco' => 'required|string|max:255',
+            'preco_venda' => 'required|string|max:255',
             'imposto' => 'required|string|max:255',
-            'editora_id' => 'required|exists:setores,id'
+            'editora_id' => 'required|exists:editora,id'
         ]);
 
         $detalhe = Detalhe::create([
             'custo' => $request->custo,
-            'preco' => $request->preco,
+            'preco_venda' => $request->preco_venda,
             'imposto' => $request->imposto,
         ]);
 
@@ -42,9 +42,9 @@ class LivroController extends Controller{
             'autor' => $request->autor,
             'descricao' => $request->descricao,
             'custo' => $request->custo,
-            'preco' => $request->preco,
+            'preco_venda' => $request->preco_venda,
             'imposto' => $request->imposto,
-            'editora_id' => $request->setor_id,
+            'editora_id' => $request->editora_id,
             'detalhe_id' => $detalhe->id
         ]);
 
@@ -64,7 +64,7 @@ class LivroController extends Controller{
             'autor' => 'required|string|max:255',
             'descricao' => 'required|string|max:255',
             'custo' => 'required|string|max:255',
-            'preco' => 'required|string|max:255',
+            'preco_venda' => 'required|string|max:255',
             'imposto' => 'required|string|max:255'
         ]);
 
@@ -78,7 +78,7 @@ class LivroController extends Controller{
 
         $livro->detalhe->update([
             'custo' => $request->custo,
-            'preco' => $request->preco,
+            'preco_venda' => $request->preco_venda,
             'imposto' => $request->imposto
         ]);
 

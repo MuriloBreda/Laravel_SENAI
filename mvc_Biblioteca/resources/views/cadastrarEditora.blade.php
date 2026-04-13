@@ -11,14 +11,14 @@
         <h1>Cadastro Editora</h1>
 
         <nav>
-            <a href="#">Listar Editora</a>
+            <a href="/editora/listar">Listar Editora</a>
         </nav>
     </header>
 
     <main>
-        <form action="#" method="POST">
+        <form action="{{ route('editora.salvar') }}" method="POST">
             @csrf
-            
+
             <label for="nome">Nome:</label>
             <input type="text" name="nomeEditora" id="nomeEditora" placeholder="Nome da Editora..." require value="{{old('nomeEditora')}}">
             <br><br>

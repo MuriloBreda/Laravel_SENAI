@@ -16,12 +16,12 @@ class EditoraController extends Controller{
 
         $request->validate([
             'nomeEditora' => 'required|string|max:255',
-            'cnpj' => 'required|numeric|max:255',
+            'cnpj' => 'required|numeric|',
             'pais' => 'required|string|max:255',
             'cidade' => 'required|string|max:255'
         ]);
 
-        Setor::create([
+        Editora::create([
             'nomeEditora' => $request->nomeEditora,
             'cnpj' => $request->cnpj,
             'pais' => $request->pais,
