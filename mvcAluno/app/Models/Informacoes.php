@@ -4,14 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Turma extends Model{
+class Informacoes extends Model{
+
+    protected $table = 'Informacoes';
 
     protected $fillable = [
-        'numSala',
-        'serie'
+        'endereco',
+        'telefone',
+        'idade',
+        'dataNascimento'
     ];
 
-    //plural (padrão Laravel)
     public function alunos(){
         return $this->hasMany(Aluno::class);
     }
