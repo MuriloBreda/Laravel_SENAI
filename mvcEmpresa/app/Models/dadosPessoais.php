@@ -4,6 +4,8 @@ use Illuminate\Database\Eloquent\Model;
 
 Class dadosPessoais extends Model{
 
+    protected $table = 'dadosPessoais';
+
     protected $fillable = [
         'CPF',
         'RG',

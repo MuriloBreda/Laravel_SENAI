@@ -4,6 +4,8 @@ use Illuminate\Database\Eloquent\Model;
 
 Class Departamento extends Model{
 
+    protected $table = 'Departamento';
+
     protected $fillable = [
         'setor',
         'orcamento',

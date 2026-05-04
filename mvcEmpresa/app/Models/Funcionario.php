@@ -4,6 +4,8 @@ use Illuminate\Database\Eloquent\Model;
 
 Class Funcionario extends Model{
 
+    protected $table = 'Funcionarios';
+
     protected $fillable = [
         'nome',
         'sobrenome',
