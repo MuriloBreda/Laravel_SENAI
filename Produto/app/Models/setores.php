@@ -4,14 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class DetalheProduto extends Model{
-
-    protected $table = 'detalhesProduto';
-
+class Setores extends Model
+{
     protected $fillable = [
-        'descricao',
-        'tamanho',
-        'peso'
+        'nome',
+        'num_corredor',
     ];
 
     public function produtos(){

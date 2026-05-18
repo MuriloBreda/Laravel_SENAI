@@ -1,66 +1,75 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt_BR">
 <head>
-    <meta charset="pt-BR">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Relatório de Produtos</title>
+    <title>Document</title>
 </head>
-<style>
-    table{
-        text-align: center
-    }
-</style>
-<body>
-    <h1>Relatório de Produtos</h1>
-    <table border="1">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>NOME</th>
-                <th>QUANTIDADE</th>
-                <th>PREÇO</th>
-                <th>DESCRIÇÃO</th>
-                <th>TAMANHO</th>
-                <th>PESO</th>
-                <th>ID SETOR</th>
-                <th>SETOR</th>
-                <th>N° CORREDOR</th>
-                <th>ATUALIZAR</th>
-                <th>DELETAR</th>
-            </tr>
-        </thead>
-        <tbody>
-            @forelse($produtos as $produto);
+    <body>
+        <h1>Controle de Produtos</h1>
+        <table border="1">
+            <thead>
                 <tr>
-                    <td>{{ $produto->id }}</td>
-                    <td>{{ $produto->nome }}</td>
-                    <td>{{ $produto->quantidade }}</td>
-                    <td>{{ $produto->preco }}</td>
-                    <td>{{ $produto->detalhe->descricao ?? '' }}</td>
-                    <td>{{ $produto->detalhe->tamanho ?? '' }}</td>
-                    <td>{{ $produto->detalhe->peso ?? '' }}</td>
-                    <td>{{ $produto->setor?->id }}</td>
-                    <td>{{ $produto->setor?->nome }}</td>
-                    <td>{{ $produto->setor?->nCorredor }}</td>
-                    <td>
-                        <a href="{{route('produto.atualizar', $produto->id)}}">Atualizar</a>
-                    </td>
-                    <td>
-                        <form action="{{ route('produto.deletar', $produto->id)}}" method="POST" onsubmit="return confirm('Deseja realmente excluir')">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit">Excluir</button>
+                    <th>ID</th>
+                    <th>NOME</th>
+                    <th>QUANTIDADE</th>
+                    <th>PREÇO</th>
+                    <th>SETOR</th>
+                    <th>ATUALIZAR</th>
+                    <th>DELETAR</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse($Produtos as $produto)
+                    <tr>
+                        <td>{{ $produto->id }}</td>
+                        <td>{{ $produto->nome }}</td>
+                        <td>{{ $produto->quantidade }}</td>
+                        <td>{{ $produto->preco }}</td>
+                        <td>{{ $produto->setor?->id }}</td>
+                        <td>
+                            <a href="{{route('produto.atualizar', $produto->id)}}">Atualizar</a>
+                        </td>
+                        <td>
+                            <form action="{{ route('produto.deletar', $produto->id)}}" method="POST"
+                                onsubmit="return confirm('Tem certeza que deseja deletar este produto?')">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit">Deletar</button>
+                            </form>
+                        </td>
+                </tr>
+                @empty
+                    <tr>
+                        <td colsoan="3">Nenhum Produto encontrado</td>
+                    </tr>
+                @endforelse
+            </tbody>
 
-                        </form>
-                    </td>
-                </tr>
-            @empty
+            <br>
+
+            <table border="1">
+            <h1>Setores</h1>
+            <thead>
                 <tr>
-                    <td colspan="12">Nenhum PRODUTO encontrado</td> 
+                    <th>ID</th>
+                    <th>NOME SETOR</th>
                 </tr>
-            @endforelse
-        </tbody>
-    </table>
-    
-</body>
+            </thead>
+            <tbody>
+
+            <tbody>
+                @forelse($Produtos as $produto)
+                    <tr>
+                        <td>{{ $produto->setor->id }}</td>
+                        <td>{{ $produto->setor->nome }}</td>
+                </tr>
+                @empty
+                    <tr>
+                        <td colsoan="3">Nenhum Setor encontrado</td>
+                    </tr>
+                @endforelse
+            </tbody>
+        </table>
+    </body>
 </html>
