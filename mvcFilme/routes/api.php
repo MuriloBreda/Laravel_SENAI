@@ -14,10 +14,10 @@ Route::get('/user', function (Request $request) {
 Route::get('autores',[AutorApiController::class, 'listarApi']);
 Route::post('autor/add',[AutorApiController::class, 'addApi']);
 Route::put('autor/atualizar/{id}',[AutorApiController::class, 'updateApi']);
-Route::put('autor/deletar/{id}',[AutorApiController::class, 'deletarApi']);
+Route::delete('autor/deletar/{id}',[AutorApiController::class, 'deletarApi']);
 
 // Rotas filme API
 Route::get('filmes',[FilmeApiController::class, 'listarApi']);
 Route::post('filme/add',[FilmeApiController::class, 'addApi']);
 Route::put('filme/atualizar/{id}',[FilmeApiController::class, 'updateApi']);
-Route::put('filme/deletar/{id}',[FilmeApiController::class, 'deletarApi']);
+Route::delete('filme/deletar/{id}',[FilmeApiController::class, 'deletarApi']);

@@ -17,7 +17,7 @@ class AutorApiController extends Controller
         $request->validate([
         'nome' => 'required|string|max:255',
         'dataNascimento' => 'required|date',
-        'email' => 'required|email|unique:autores,email',
+        'email' => 'required|email|unique:autores',
         'telefone' => 'required|string|max:20',
     ]);
         
@@ -38,7 +38,7 @@ class AutorApiController extends Controller
         $request->validate([
             'nome' => 'required|string|max:255',
             'dataNascimento' => 'required|date',
-            'email' => 'required|email|unique:autores,email',
+            'email' => 'required|email|unique:autores',
             'telefone' => 'required|string|max:20',
         ]);
 
