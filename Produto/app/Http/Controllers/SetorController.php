@@ -8,10 +8,26 @@ use Illuminate\Http\Request;
 
 class SetorController extends Controller
 {
-    public function listar(){
-        $query = Setores::query();
-        $Setores = $query->get();
-        return view('listar', compact('Setores'));
+    public function listar(Request $request){
+        try{
+            $query = Setores::query();
+
+            // filtro por nome
+            // select * from setores where nome like %NOME%
+            if($request->filled('nome')){
+                $query->where('nome', 'like', '%' . $request->nome . '%');
+            }
+
+            $setores = $query->get();
+
+            return view('listarSetores', compact('setores'));
+
+        } catch (\Exception $e) {
+            return view('listarSetores',[
+                'setores' => collect(),
+                'erro'
+            ]);
+        }
     }
 
     public function add(Request $request){

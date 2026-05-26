@@ -37,3 +37,5 @@ Route::get('/setor/cadastrar', function(){
 
 Route::post('/setor/salvar', [SetorController::class, 'add'])
 ->name('setor.salvar');
+
+Route::get('/setor/listar', [SetorController::class, 'listar']) -> name('setor.listar');
