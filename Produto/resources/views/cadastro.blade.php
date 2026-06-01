@@ -10,6 +10,7 @@
 
 <body>
     <h1>Cadastro de Produtos</h1>
+    <a href="{{ route('produto.listar') }}">Voltar para a lista de produtos</a>
     @if (@session('success'))
         <p style="color: green">{{ session('succes') }}</p>
     @endif
@@ -17,17 +18,17 @@
     <form action="{{ route('produto.salvar') }}" method="POST">
         @csrf
         <label for="nome">Nome produto: </label>
-        <input type="text" name="nome" id="nome" placeholder="Nome do produto" required
+        <input type="text" name="nome" id="nome" placeholder="Nome do produto" require
             value="{{ old('nome') }}">
         <br><br>
 
         <label for="quantidade">Quantidade: </label>
-        <input type="number" name="quantidade" id="quantidade" placeholder="Quantidade escolhida: " required
+        <input type="number" name="quantidade" id="quantidade" placeholder="Quantidade escolhida: " require
             value="{{ old('quantidade') }}">
         <br><br>
 
         <label for="preco">Preço: </label>
-        <input type="number" name="preco" id="preco" placeholder="Preco" min="0"
+        <input type="number" name="preco" id="preco" placeholder="Preco" min="0" require
             value="{{ old('preco') }}">
         <br><br>
 

@@ -9,6 +9,7 @@
 
 <body>
     <h1>Controle de Produtos</h1>
+    <a href="{{ route('produto.cadastro') }}">Cadastrar Novo Produto    </a>
     <table border="1">
         <thead>
             <tr>

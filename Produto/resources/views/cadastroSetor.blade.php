@@ -9,6 +9,7 @@
 
 <body>
     <h1>Cadastro setor</h1>
+    <a href="{{ route('setor.listar') }}">Voltar para a lista de setores</a>
     @if (session('success'))
         <p style="color:green">{{ session('success') }}</p>
     @endif
