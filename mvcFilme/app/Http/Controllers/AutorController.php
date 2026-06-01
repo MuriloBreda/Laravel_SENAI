@@ -8,10 +8,30 @@ use Illuminate\Http\Request;
 
 class AutorController extends Controller
 {
-    public function listar(){
-        $query = Autor::query();
-        $Autores = $query->get();
-        return view('listarAutor', compact('Autores'));
+     public function listar(Request $request){
+        try {
+            $query = Autor::query();
+            
+            // Filtro por nome
+            // Select * from autores where nome like %VAR%
+            if ($request->filled('nome')) {
+                $query->where('nome', 'like', '%'.$request->nome . '%');
+            }
+            elseif ($request->filled('telefone')) {
+                $query->where('telefone', 'like', '%'.$request->telefone . '%');
+            }
+
+            $autores = $query->get();
+
+            return view('listarAutor', compact('autores'));
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => "Erro interno do servidor",
+                'errors' => $e->getMessage()
+            ], 500);
+        }
     }
 
     // public function add(Request $request){

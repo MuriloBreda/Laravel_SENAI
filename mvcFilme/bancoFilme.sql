@@ -27,5 +27,8 @@ create table Autores(
     updated_at timestamp null
 );
 
+insert into Filme (titulo, dataLancamento, sinopse, genero, orcamento, autor_id)
+values("Sla 2", "10/03/27", "top demais", "terror", 10000, 1);
+
 select * from Filme;
 select * from Autor;

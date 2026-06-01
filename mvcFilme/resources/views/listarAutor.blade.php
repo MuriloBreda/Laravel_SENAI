@@ -9,6 +9,27 @@
         <h1>Controle de Autores</h1>
         <a href="/filme/listar">Listar Filmes</a>
         <br>
+
+        <form method="GET" action="{{ route('autor.listar') }}">
+    
+            <input
+                type="text"
+                name="nome"
+                placeholder="Digite o nome do autor"
+                value="{{ request('nome') }}"
+            >
+            
+            <input
+                type="text"
+                name="telefone"
+                placeholder="Digite o telefone do autor"
+                value="{{ request('telefone') }}"
+            >
+
+            <button type="submit">Buscar</button>
+
+        </form>
+
         <table border="1">
             <thead>
                 <tr>
@@ -20,7 +41,7 @@
                 </tr>
             </thead>
             <tbody>
-                @forelse($Autores as $Autor)
+                @forelse($autores as $Autor)
                     <tr>
                         <td>{{ $Autor->id }}</td>
                         <td>{{ $Autor->nome }}</td>

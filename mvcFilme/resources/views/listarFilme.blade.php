@@ -9,6 +9,27 @@
         <h1>Controle de Filmes</h1>
         <a href="/autor/listar">Listar Autores</a>
         <br>
+
+        <form method="GET" action="{{ route('filme.listar') }}">
+    
+            <input
+                type="text"
+                name="titulo"
+                placeholder="Digite o título do filme"
+                value="{{ request('titulo') }}"
+            >
+            
+            <input
+                type="text"
+                name="dataLancamento"
+                placeholder="Digite a data de lançamento"
+                value="{{ request('dataLancamento') }}"
+            >
+
+            <button type="submit">Buscar</button>
+
+        </form>
+
         <table border="1">
             <thead>
                 <tr>
@@ -22,7 +43,7 @@
                 </tr>
             </thead>
             <tbody>
-                @forelse($Filmes as $Filme)
+                @forelse($filmes as $Filme)
                     <tr>
                         <td>{{ $Filme->id }}</td>
                         <td>{{ $Filme->titulo }}</td>
