@@ -1,74 +1,73 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Produto;
 use App\Models\Setores;
-
+use GuzzleHttp\Psr7\Response;
 use Illuminate\Http\Request;
 
 class SetorApiController extends Controller
 {
-    public function listarApi(){
-        try{
+    public function listarApi(Request $request){
+        try {
             $query = Setores::query();
-
-            // filtro por nome
-            // select * from setores where nome like %NOME%
-            if($request->filled('nome')){
-                $query->where('nome', 'like', '%' . $request->nome . '%');
+            
+            // Filtro por nome
+            // Select * from setores where nome like %VAR%
+            if ($request->filled('nome')) {
+                $query->where('nome', 'like', '%'.$request->nome . '%');
             }
-
-            // filtro por número do corredor
-            // select * from setores where num_setor = NUM_SETOR
-            if($request->filled('num_setor')){
-                $query->where('num_setor', $request->num_corredor);
+            // Filtros por número do setor
+            if ($request->filled('num_setor')) {
+                $query->where('num_setor', $request->num_setor);
             }
 
             $setores = $query->get();
 
             return response()->json([
-                'success' => true,
+                'succes' => true,
                 'data' => $setores
             ], 200);
 
         } catch (\Exception $e) {
             return response()->json([
                 'success' => false,
-                'message' => 'Erro interno do servidor',
-                'error' => $e->getMessage()
+                'message' => "Erro interno do servidor",
+                'errors' => $e->getMessage()
             ], 500);
         }
     }
 
     public function addApi(Request $request){
-        try{
+        try {
             $request->validate([
-            'nome' => 'required|string|max:255',
-            'num_setor' => 'required|integer',
-            // para poder ser nulo ou existir na tabela setores
-        ]);
-            
-        $setor = Setores::create([
-            'nome' => $request->nome,
-            'num_setor' => $request->num_corredor,
-        ]);
+                'nome' => 'required|string|max:255',
+                'num_corredor' => 'required|integer',
+                // para poder ser nulo ou existir na tabela setores
+            ]);
+
+            $setor = Setores::create([
+                'nome' => $request->nome,
+                'num_corredor' => $request->num_corredor,
+            ]);
 
             return response()->json([
                 'success' => true,
                 'message' => 'Setor Criado',
                 'setor' => $setor
             ], 201);
-        } catch(\Illuminate\Validation\ValidationException $e){
+        } catch (\Illuminate\Validation\ValidationException $e) {
             return response()->json([
                 'success' => false,
                 'message' => 'Erro de validação',
-                'errors' => $e->errors()
+                'erros' => $e->errors()
             ], 422);
-        } catch(\Exception $e){
+        } catch (\Exception $e) {
             return response()->json([
                 'success' => false,
-                'message' => 'Erro interno do servidor',
-                'error' => $e->getMessage()
+                'message' => "Erro interno do servidor",
+                'errors' => $e->getMessage()
             ], 500);
         }
     }
@@ -77,7 +76,7 @@ class SetorApiController extends Controller
         try {
             $request->validate([
                 'nome' => 'required|string|max:255',
-                'num_setor' => 'required|int',
+                'num_corredor' => 'required|int',
             ]);
 
             $setor = Setores::findOrFail($id); // Busca o produto para ser atualizado
@@ -91,11 +90,10 @@ class SetorApiController extends Controller
                 'message' => "Setor Atualizado!",
                 'setor' => $setor
             ], 200);
-
         } catch (\Illuminate\Validation\ValidationException $e) {
             return response()->json([
                 'success' => false,
-                'message' => 'Erro de validação',
+                'message' => 'Erro na validação',
                 'errors' => $e->errors()
             ], 422);
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
@@ -106,21 +104,22 @@ class SetorApiController extends Controller
         } catch (\Exception $e) {
             return response()->json([
                 'success' => false,
-                'message' => 'Erro interno do servidor',
-                'error' => $e->getMessage()
+                'message' => "Erro interno do servidor",
+                'errors' => $e->getMessage()
             ], 500);
         }
     }
 
     public function deletarApi($id){
-        try{
+        try {
             $setor = Setores::findOrFail($id); // Buscar o setor pelo ID
             $setor->delete(); // Deletar o setor do banco de dados
 
-             return response()->json([
+            return response()->json([
                 'message' => "Setor Deletado com Sucesso!",
+                'setor' => $setor
             ], 200);
-        }catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
             return response()->json([
                 'success' => false,
                 'message' => 'Setor não encontrado'
@@ -128,9 +127,9 @@ class SetorApiController extends Controller
         } catch (\Exception $e) {
             return response()->json([
                 'success' => false,
-                'message' => 'Erro interno do servidor',
-                'error' => $e->getMessage()
+                'message' => "Erro interno do servidor",
+                'errors' => $e->getMessage()
             ], 500);
+        }
     }
-}
 }
