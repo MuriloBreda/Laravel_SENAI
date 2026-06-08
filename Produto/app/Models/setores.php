@@ -7,11 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Setores extends Model
 {
     protected $fillable = [
-        'nome',
-        'num_corredor',
+        'nomeSetor',
+        'numCorredor'
     ];
 
-    public function produtos(){
-        return $this->hasMany(Produto::class);
+    public function setores(){
+        return $this->hasMany(Setores::class);
     }
 }

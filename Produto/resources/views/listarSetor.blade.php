@@ -1,10 +1,15 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_','-',app()->getLocale()) }}">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Listar Setores</title>
+    <title>Lista de Setores 💻</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
 </head>
 
@@ -22,23 +27,26 @@
                 <div class="decoration-line"></div>
             </div>
 
-            <!-- AULA E HOJE INICIO-->
-
-<form method="GET" action="{{ route('setor.listar') }}">
-    
-    <input
-        type="text"
-        name="nome"
-        placeholder="Digite o nome do setor"
-        value="{{ request('nome') }}"
-    >
-
-    <button type="submit">Buscar</button>
-
-</form>
+            {{-- Campo de input para pesquisar o nome do setor --}}
+           <form method="GET" action="{{ route('setor.listar') }}" class="form-busca-setor">
+                <div class="search-box">
+                    <i class='bx bx-search'></i>
+                    <input
+                        type="text"
+                        name="nomeSetor"
+                        placeholder="Pesquisar setor..."
+                        value="{{ request('nomeSetor') }}"
+                    >
+                </div>
+                    {{-- Botão de que vai filtrar  --}}
+                <button type="submit" class="btn-search">
+                    <i class='bx bx-filter-alt'></i>
+                    Buscar
+                </button>
+            </form>
 
             <div class="table-responsive">
-                <table border=1>
+                <table>
                     <thead>
                         <tr>
                             <th class="text-center" style="width: 80px;">ID</th>
@@ -52,19 +60,18 @@
                                 <td class="text-center">
                                     <span class="badge-id">#{{ $setor->id }}</span>
                                 </td>
-                                <td><strong>{{ $setor->nome }}</strong></td>
+                                <td><strong>{{ $setor->nomeSetor }}</strong></td>
                                 <td class="text-center">
                                     <span class="corredor-info">
                                         <i class='bx bx-navigation' style="font-size: 14px;"></i>
-                                        {{ $setor->num_corredor }}
+                                        {{ $setor->numCorredor }}
                                     </span>
                                 </td>
                             </tr>
                         @empty
                             <tr>
                                 <td colspan="3" class="text-center empty-state">
-                                    <i class='bx bx-search-alt'
-                                        style="font-size: 36px; display: block; margin-bottom: 8px; color: var(--text-light);"></i>
+                                    <i class='bx bx-search-alt' style="font-size: 36px; display: block; margin-bottom: 8px; color: var(--text-light);"></i>
                                     Nenhum setor encontrado 🔍
                                 </td>
                             </tr>

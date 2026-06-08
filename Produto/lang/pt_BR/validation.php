@@ -1,30 +1,27 @@
 <?php
-
-return [
+ return [
 
     'custom' => [
-        'nome' => [
+        'nomeSetor' => [
             'required' => 'O nome é obrigatório.',
             'max' => 'O nome deve ter no máximo :max caracteres.',
         ],
 
-        'num_corredor' => [
-            'required' => 'O número do corredor é obrigatório.',
-            'numeric' => 'O número do corredor deve ser numérico.',
-            'max' => 'O número do corredor não pode ser maior que :max.',
+        'numCorredor' => [
+            'required' => 'O número é obrigatório.',
+            'numeric' => 'O número do setor deve ser um número.',
+            'max' => 'O número do setor não pode ser maior que :max.',
         ],
 
         'quantidade' => [
-            'required' => 'A quantidade é obrigatória.',
-            'numeric' => 'A quantidade deve ser numérica.',
-            'max' => 'A quantidade não pode ser maior que :max.',
+            'required' => 'O campo quantidade é obrigatório.',
+            'numeric' => 'O campo quantidade aceita apenas números.',
+            'max' => 'O número de produtos não pode ser maior que :max.',
         ],
 
         'preco' => [
-            'required' => 'O preço é obrigatório.',
-            'numeric' => 'O preço deve ser numérico.',
-            'min' => 'O preço deve ser pelo menos :min.',
+            'required' => 'É obrigatório informar o valor do produto.',
+            'numeric' => 'O campo preço deve ser um número.',
         ],
     ],
-
 ];
